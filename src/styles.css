@@ -1,0 +1,1541 @@
+/* ========================================================================
+    GLOBAL STYLES & VARIABLES
+    ======================================================================== */
+
+/* Variables for common colors and spacing */
+:root {
+    /* Existing Colors */
+    --indigo-600: #4f46e5;
+    --indigo-700: #4338ca;
+    --indigo-400: #818cf8;
+    --gray-800: #1f2937;
+    --gray-700: #374151;
+    --gray-600: #4b5563;
+    --gray-400: #9ca3af;
+    --gray-300: #d1d5db;
+    --gray-200: #e5e7eb;
+    --gray-100: #f3f4f6;
+    --white: #ffffff;
+    --black: #000000;
+    --red-600: #dc2626;
+    --red-700: #b91c1c;
+
+    /* Spacing variables (Tailwind equivalents approx.) */
+    --spacing-1: 0.25rem;       /* 4px */
+    --spacing-2: 0.5rem;        /* 8px */
+    --spacing-3: 0.75rem;       /* 12px */
+    --spacing-4: 1rem;          /* 16px */
+    --spacing-5: 1.25rem;       /* 20px */
+    --spacing-6: 1.5rem;        /* 24px */
+    --spacing-8: 2rem;          /* 32px */
+    --spacing-10: 2.5rem;       /* 40px */
+    --spacing-12: 3rem;         /* 48px */
+    --spacing-20: 5rem;         /* 80px */
+
+    /* Font sizes (Tailwind equivalents approx.) */
+    --text-xs: 0.75rem;         /* 12px */
+    --text-sm: 0.875rem;       /* 14px */
+    --text-base: 1rem;         /* 16px */
+    --text-lg: 1.125rem;       /* 18px */
+    --text-xl: 1.25rem;         /* 20px */
+    --text-2xl: 1.5rem;         /* 24px */
+    --text-3xl: 1.875rem;       /* 30px */
+    --text-4xl: 2.25rem;       /* 36px */
+    --text-5xl: 3rem;           /* 48px */
+    --text-6xl: 3.75rem;       /* 60px */
+
+    /* Shadow variables (Tailwind equivalents) */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Added for search results area */
+    --border-radius: 0.25rem; /* 4px */
+    --border-radius-lg: 0.5rem; /* 8px */
+
+
+    /* --- Theme Variables (Light Mode Defaults) --- */
+    --primary-bg: var(--gray-100); /* Main background color for body, pages */
+    --secondary-bg: var(--white); /* Background for cards, containers, navbar */
+    --text-color: var(--gray-800); /* Default text color */
+    --heading-color: var(--gray-800); /* Headings specific color */
+    --link-color: var(--indigo-600); /* Link/primary accent color */
+    --border-color: var(--gray-200); /* Border color for elements */
+    --input-border-color: var(--gray-300); /* Input border color */
+    --button-bg: var(--indigo-600); /* Default button background */
+    --button-text: var(--white); /* Default button text color */
+    --button-hover-bg: var(--indigo-700); /* Button hover background */
+    --danger-color: var(--red-600); /* For remove/danger actions */
+    --danger-hover-color: var(--red-700);
+    --muted-text-color: var(--gray-600); /* For descriptions, subtle text */
+    --light-text-color: var(--gray-400); /* Even lighter text for copyright etc. */
+    --shadow-base: var(--shadow-md); /* Base shadow variable for components */
+    --icon-color: var(--gray-600); /* Icon color */
+    --quantity-btn-bg: rgba(123, 123, 123, 0.2); /* Specific to cart quantity buttons */
+    --quantity-btn-hover-bg: rgba(0, 0, 0, 0.1);
+
+    /* Checkout specific custom variables, ensuring they use defined colors */
+    --bg-color: var(--gray-100); /* Light mode background for sections in checkout */
+    --blue-500: var(--indigo-600); /* Maps to indigo for consistency */
+    --blue-600: var(--indigo-700); /* Maps to indigo for consistency */
+    --primary: var(--indigo-600); /* Maps to primary link color for titles */
+}
+
+/* --- Dark Theme Overrides --- */
+body.theme-dark {
+    --primary-bg: var(--gray-800);
+    --secondary-bg: var(--gray-700);
+    --text-color: var(--gray-100);
+    --heading-color: var(--white);
+    --link-color: var(--indigo-400);
+    --border-color: var(--gray-600);
+    --input-border-color: var(--gray-600);
+    --button-bg: var(--indigo-400);
+    --button-text: var(--gray-800); /* Dark text on light button */
+    --button-hover-bg: var(--indigo-600);
+    --danger-color: var(--red-600); /* Can keep same or adjust */
+    --danger-hover-color: var(--red-700);
+    --muted-text-color: var(--gray-400);
+    --light-text-color: var(--gray-600);
+    --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2); /* Darker shadows */
+    --icon-color: var(--gray-400);
+    --quantity-btn-bg: rgba(255, 255, 255, 0.1);
+    --quantity-btn-hover-bg: rgba(255, 255, 255, 0.2);
+
+    /* Checkout specific custom variables for dark mode */
+    --bg-color: var(--gray-800); /* Dark mode background for sections in checkout */
+    --blue-500: var(--indigo-400); /* Maps to indigo for consistency */
+    --blue-600: var(--indigo-600); /* Maps to indigo for consistency */
+    --primary: var(--indigo-400); /* Maps to primary link color for titles */
+}
+
+/* Ensure dropdown options for filters are readable in dark mode */
+body.theme-dark .filter-select option,
+body.theme-dark .filter-select-page option {
+    background-color: var(--secondary-bg); /* Dark background for options */
+    color: var(--text-color); /* Light text for options */
+}
+
+/* Base & Global Styles */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--primary-bg); /* Use theme variable */
+    color: var(--text-color); /* Use theme variable */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+/* App Layout */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+/* Container for responsiveness */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+}
+
+/* ========================================================================
+    NAVBAR COMPONENT
+    ======================================================================== */
+.navbar {
+    background-color: var(--secondary-bg);
+    box-shadow: var(--shadow-base);
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-left {
+    flex: 1;
+}
+
+.navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem; /* Spacing between icons */
+}
+
+.navbar-brand {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: #99d6ea !important; /* Force this specific light blue color */
+    transition: color 0.3s ease;
+}
+
+/* If the logo contains an SVG or specific text elements that need direct styling */
+.navbar-brand svg {
+    fill: #99d6ea !important; /* Forces the fill color for any SVG paths within the logo */
+    color: #99d6ea !important; /* Ensures the SVG itself inherits/uses this color if applicable */
+}
+
+.navbar-brand svg path {
+    fill: #99d6ea !important; /* Specific for paths inside the SVG */
+}
+
+/* If "Mart" or the cart are separate spans/elements inside .navbar-brand and not just SVG */
+.navbar-brand .logo-text-mart,
+.navbar-brand .cart-icon-element { /* Replace with actual class/element names if known */
+    color: #99d6ea !important;
+    fill: #99d6ea !important; /* For icons that are actually SVG or font icons */
+}
+
+
+.navbar-link {
+    color: var(--muted-text-color);
+    transition: color 0.2s ease-in-out;
+    font-size: var(--text-base);
+}
+
+.navbar-link:hover {
+    color: var(--link-color);
+}
+
+/* Specific styles for the wishlist and cart link containers (NEW/UPDATED) */
+.navbar-wishlist-link,
+.navbar-cart-link {
+    position: relative; /* Crucial for positioning the count badge */
+    display: flex; /* Helps align the icon and potential badge if needed */
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2); /* Add some padding around the icon for the badge */
+}
+
+
+/* General style for icons in the navbar */
+.nav-icon {
+    height: var(--spacing-6); /* Example size */
+    width: var(--spacing-6); /* Example size */
+    color: var(--icon-color);
+    transition: color 0.3s ease;
+}
+
+.nav-icon-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0; /* Remove default button padding */
+    display: flex; /* To center the icon */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--icon-color); /* Inherit color from nav-icon */
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    border-radius: 50%; /* Make interactive area round */
+    width: var(--spacing-8); /* Clickable area size */
+    height: var(--spacing-8); /* Clickable area size */
+}
+
+.nav-icon-btn:hover {
+    background-color: var(--border-color); /* Subtle hover background */
+    color: var(--link-color); /* Change icon color on hover */
+}
+
+/* Specific style for the theme icon within the button */
+.theme-icon {
+    font-size: var(--text-xl); /* Adjust size of the Bootstrap icon */
+    /* If using lucide-react, you'd use width/height here */
+}
+
+/* UPDATED: COUNT BADGE STYLES - Now applies to both cart and wishlist */
+.cart-count { /* This class is used by both cart and wishlist counters */
+    position: absolute;
+    top: 0; /* Adjust top/right to position correctly relative to the icon */
+    right: 0;
+    background-color: var(--red-600); /* Typically red for notification badges */
+    color: var(--white);
+    border-radius: 50%; /* Makes it circular */
+    padding: 2px 6px; /* Adjust padding for size */
+    font-size: 0.75rem; /* Smaller font size for the count */
+    font-weight: bold;
+    min-width: 20px; /* Ensures a consistent circular shape even for single digits */
+    height: 20px; /* Ensures consistent height */
+    display: flex; /* Use flexbox to center the number inside the circle */
+    align-items: center;
+    justify-content: center;
+    transform: translate(50%, -50%); /* Adjusts position to sit outside the corner */
+    box-shadow: 0 0 0 2px var(--secondary-bg); /* Small border to separate from background */
+    z-index: 10; /* Ensure it's above other elements */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Ensure theme transitions */
+}
+
+/* If you need specific overrides for wishlist vs. cart counter, you can use: */
+.wishlist-count {
+    /* E.g., if wishlist had a different background color, though using red-600 is common */
+}
+
+
+.navbar-logo {
+    width: 25%; /* Or whatever size you need */
+    height: auto;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+/* ========================================================================
+    HERO SECTION (SWIPER) COMPONENT
+    ======================================================================== */
+.hero-swiper-container {
+    width: 100%;
+    height: 400px;
+    background-color: var(--secondary-bg); /* Fallback/initial background */
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+    height: 100%;
+}
+
+.hero-slide {
+    height: 100%;
+    width: 100%;
+    /* background-image set in JS */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--gray-800); /* Dark fallback for slides */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--white); /* Always white text on dark hero images */
+    text-align: center;
+}
+
+.hero-slide-content {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: var(--spacing-6);
+    border-radius: 0.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+/* Swiper Navigation Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--white); /* Keep white for visibility on dark images */
+    --swiper-navigation-size: 40px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    opacity: 1;
+}
+
+/* Swiper Pagination Dots */
+.swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.501); /* Keep white for visibility */
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--white); /* Keep white for visibility */
+}
+
+
+/* ========================================================================
+    ALL PRODUCTS SECTION (formerly FEATURED)
+    ======================================================================== */
+.all-products-section { /* Renamed class */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+    padding-top: var(--spacing-6);
+    padding-bottom: var(--spacing-12);
+    background-color: var(--primary-bg); /* Use primary background */
+    transition: background-color 0.3s ease;
+}
+
+.section-title { /* Renamed class for general titles */
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-8);
+    text-align: center;
+    color: var(--heading-color); /* Use theme variable */
+    transition: color 0.3s ease;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column on small screens */
+    gap: var(--spacing-8);
+}
+
+/* --- Filter and Sort Styles --- */
+.filters-and-sort-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+    justify-content: center;
+    padding: 15px;
+    background-color: var(--secondary-bg); /* Use secondary background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-base); /* Use theme shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-label {
+    font-weight: bold;
+    color: var(--text-color); /* Use theme text color */
+    transition: color 0.3s ease;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 1px solid var(--input-border-color); /* Use theme input border */
+    border-radius: 5px;
+    background-color: var(--secondary-bg); /* Use secondary background */
+    color: var(--text-color); /* Use theme text color */
+    font-size: 1em;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    border-color: var(--link-color); /* Use theme link color for focus */
+}
+
+/* --- No Products Message --- */
+.no-products-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 0;
+    color: var(--muted-text-color); /* Use muted text color */
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+
+/* ========================================================================
+    PRODUCT CARD COMPONENT
+    ======================================================================== */
+/* ========================================================================
+    PRODUCT CARD COMPONENT
+    ======================================================================== */
+.product-card {
+    background-color: var(--secondary-bg);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-base);
+    transition: background-color 0.3s ease, box-shadow 0.2s ease-in-out, border-color 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative; /* Needed for absolute positioning of hover-buttons */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks properly */
+    height: 100%; /* Ensure cards are uniform height if needed */
+}
+
+.product-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.product-image-wrapper {
+    height: 16rem; /* Fixed height for image area */
+    overflow: hidden;
+    position: relative; /* Needed for absolute positioning of hover-buttons */
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Remove extra space below image */
+}
+
+.hover-buttons {
+    position: absolute;
+    bottom: var(--spacing-4); /* Distance from bottom of image wrapper */
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--spacing-4)); /* Center and hide initially below */
+    display: flex;
+    gap: var(--spacing-3); /* Space between buttons */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10; /* Ensure buttons are above image */
+    width: calc(100% - var(--spacing-8)); /* Full width with padding */
+    box-sizing: border-box; /* Include padding in width */
+    justify-content: center; /* Center buttons horizontally */
+}
+
+.product-card:hover .hover-buttons {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Fade in and slide up */
+}
+
+/* Generic button styles for .btn */
+.btn {
+    padding: var(--spacing-2) var(--spacing-4); /* Consistent padding */
+    border-radius: var(--border-radius);
+    font-size: var(--text-sm); /* Slightly smaller font for buttons */
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    flex-grow: 1; /* Allow buttons to grow and fill space */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.cart-btn {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--button-bg); /* Add border for consistency */
+}
+
+.cart-btn:hover {
+    background-color: var(--button-hover-bg);
+    border-color: var(--button-hover-bg);
+}
+
+/* ... (keep all other styles above this section as they are) ... */
+
+/* Generic button styles for .btn */
+.btn {
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--border-radius);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+.cart-btn {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--button-bg);
+}
+
+.cart-btn:hover {
+    background-color: var(--button-hover-bg);
+    border-color: var(--button-hover-bg);
+}
+
+/* UPDATED: Make wishlist button same as cart button */
+.wishlist-btn {
+    background-color: var(--button-bg); /* Same background as cart button */
+    color: var(--button-text);       /* Same text color as cart button */
+    border: 1px solid var(--button-bg); /* Same border as cart button */
+}
+
+.wishlist-btn:hover {
+    background-color: var(--button-hover-bg); /* Same hover background as cart button */
+    border-color: var(--button-hover-bg); /* Same hover border as cart button */
+}
+
+/* ... (keep all other styles below this section as they are) ... */
+
+.product-info {
+    padding: var(--spacing-4);
+    flex-grow: 1; /* Allows info section to take up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push price to bottom */
+}
+
+.product-name {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-2);
+    color: var(--text-color);
+    line-height: 1.3; /* Improve readability */
+}
+
+.product-name-link {
+    transition: color 0.2s ease-in-out;
+    color: inherit;
+    text-decoration: none; /* Ensure no underline */
+}
+
+.product-name-link:hover {
+    color: var(--link-color);
+}
+
+.product-actions {
+    /* This class is no longer directly used for buttons, but keep if for other actions */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    color: var(--link-color);
+    font-weight: 700;
+    margin-top: var(--spacing-3); /* Space above price */
+    display: block; /* Ensure it takes full width */
+}
+
+
+/* ========================================================================
+    FOOTER COMPONENT
+    ======================================================================== */
+.footer {
+    background-color: var(--gray-800); /* Keep dark for footer consistently */
+    color: var(--white); /* Keep white text for footer consistently */
+    padding-top: var(--spacing-8);
+    padding-bottom: var(--spacing-8);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-4);
+}
+
+.footer-brand {
+    margin-bottom: var(--spacing-4);
+}
+
+.footer-brand-title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--white); /* Keep white */
+}
+
+.footer-brand-slogan {
+    color: var(--gray-400); /* Keep gray-400 */
+    margin-top: var(--spacing-2);
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-link {
+    transition: color 0.2s ease-in-out;
+    color: var(--gray-200); /* Slightly lighter for links */
+}
+
+.footer-link:hover {
+    color: var(--indigo-400); /* Use theme variable for hover */
+}
+
+.footer-copyright {
+    border-top: 1px solid var(--gray-700);
+    margin-top: var(--spacing-6);
+    padding-top: var(--spacing-6);
+    text-align: center;
+    color: var(--gray-400); /* Keep gray-400 */
+}
+
+
+/* ========================================================================
+    PRODUCT DETAIL PAGE
+    ======================================================================== */
+.product-detail-page {
+    padding-top: var(--spacing-12);
+    padding-bottom: var(--spacing-12);
+    background-color: var(--primary-bg); /* Use theme primary background */
+    min-height: calc(100vh - 4rem - 6rem); /* Adjust based on navbar/footer height */
+    transition: background-color 0.3s ease;
+}
+
+.product-detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-6);
+    background-color: var(--secondary-bg); /* Use theme secondary background */
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-base); /* Use theme shadow */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-detail-image-wrapper {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.product-detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+
+.product-detail-info {
+    padding: var(--spacing-4);
+}
+
+.product-detail-name {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-4);
+    color: var(--heading-color); /* Use theme heading color */
+    transition: color 0.3s ease;
+}
+
+.product-detail-description {
+    font-size: var(--text-lg);
+    color: var(--muted-text-color); /* Use muted text color */
+    margin-bottom: var(--spacing-6);
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.product-detail-price {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--link-color); /* Use theme link color for price */
+    margin-bottom: var(--spacing-6);
+    transition: color 0.3s ease;
+}
+
+.product-detail-add-to-cart-btn {
+    background-color: var(--button-bg); /* Use theme button background */
+    color: var(--button-text); /* Use theme button text */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.product-detail-add-to-cart-btn:hover {
+    background-color: var(--button-hover-bg); /* Use theme button hover */
+}
+
+
+/* ========================================================================
+    CART PAGE
+    ======================================================================== */
+.cart-page {
+    padding-top: var(--spacing-12);
+    padding-bottom: var(--spacing-12);
+    background-color: var(--primary-bg); /* Use theme primary background */
+    min-height: calc(100vh - 4rem - 6rem);
+    transition: background-color 0.3s ease;
+}
+
+.cart-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-6);
+    background-color: var(--secondary-bg); /* Use theme secondary background */
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-base); /* Use theme shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--spacing-8);
+    color: var(--heading-color); /* Use theme heading color */
+    transition: color 0.3s ease;
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--muted-text-color); /* Use muted text color */
+    padding: var(--spacing-8);
+    transition: color 0.3s ease;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    border-bottom: 1px solid var(--border-color); /* Use theme border */
+    padding-bottom: var(--spacing-4);
+    transition: border-color 0.3s ease;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.cart-item-name {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-color); /* Use theme text color */
+    transition: color 0.3s ease;
+}
+
+.cart-item-price {
+    font-weight: 700;
+    color: var(--link-color); /* Use theme link color for price */
+    transition: color 0.3s ease;
+}
+
+.cart-item-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.quantity-btn {
+    background-color: var(--quantity-btn-bg); /* Use theme specific quantity btn bg */
+    color: var(--text-color); /* Use theme text color */
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, color 0.3s ease;
+}
+
+.quantity-btn:hover:not(:disabled) {
+    background-color: var(--quantity-btn-hover-bg); /* Use theme specific quantity btn hover */
+}
+
+.quantity-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.item-quantity {
+    font-weight: 600;
+    min-width: 1.5rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.remove-from-cart-btn {
+    color: var(--danger-color); /* Use theme danger color */
+    font-size: larger;
+    margin-top: var(--spacing-2);
+    align-self: flex-start;
+    transition: color 0.2s ease-in-out;
+    background-color: transparent; /* Keep background transparent */
+}
+
+.remove-from-cart-btn:hover {
+    color: var(--danger-hover-color); /* Use theme danger hover color */
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-6);
+    border-top: 1px solid var(--border-color); /* Use theme border */
+    margin-top: var(--spacing-6);
+    transition: border-color 0.3s ease;
+}
+
+.cart-total {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--heading-color); /* Use theme heading color */
+    transition: color 0.3s ease;
+}
+
+.cart-total span {
+    color: var(--link-color); /* Use theme link color */
+}
+
+.checkout-btn {
+    background-color: var(--button-bg); /* Use theme button background */
+    color: var(--button-text); /* Use theme button text */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    display: block;
+    width: 100%;
+    margin-top: var(--spacing-6);
+}
+
+.checkout-btn:hover {
+    background-color: var(--button-hover-bg); /* Use theme button hover */
+}
+
+
+/* ========================================================================
+    GENERIC CONTENT PAGES (About, Services, Contact Base)
+    ======================================================================== */
+.main-content-page {
+    padding-top: var(--spacing-12);
+    padding-bottom: var(--spacing-12);
+    background-color: var(--primary-bg); /* Use theme primary background */
+    min-height: calc(100vh - 4rem - 6rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from center to start for more control */
+    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.page-title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--link-color); /* Use theme link color for page titles */
+    margin-bottom: var(--spacing-6);
+    transition: color 0.3s ease;
+}
+
+.page-description {
+    font-size: var(--text-lg);
+    color: var(--muted-text-color); /* Use muted text color */
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-4) auto;
+    transition: color 0.3s ease;
+}
+
+/* Services Page Specific */
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-8);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.service-item-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--heading-color); /* Use theme heading color */
+    margin-bottom: var(--spacing-2);
+    transition: color 0.3s ease;
+}
+
+.service-item-description {
+    font-size: var(--text-base);
+    color: var(--muted-text-color); /* Use muted text color */
+    line-height: 1.5;
+    transition: color 0.3s ease;
+}
+
+/* Contact Page Specific Styles */
+.contact-info {
+    margin-top: var(--spacing-8);
+    font-size: var(--text-lg);
+    color: var(--muted-text-color); /* Use muted text color */
+    line-height: 1.8;
+    transition: color 0.3s ease;
+}
+
+.contact-info strong {
+    color: var(--link-color); /* Use theme link color */
+    transition: color 0.3s ease;
+}
+
+.contact-form-wrapper {
+    background-color: var(--secondary-bg); /* Use theme secondary background */
+    padding: var(--spacing-8);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-base); /* Use theme shadow */
+    margin-top: var(--spacing-12);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--heading-color); /* Use theme heading color */
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.contact-form .form-group {
+    margin-bottom: var(--spacing-4);
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color); /* Use theme text color */
+    margin-bottom: var(--spacing-2);
+    transition: color 0.3s ease;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: var(--spacing-3);
+    border: 1px solid var(--input-border-color); /* Use theme input border */
+    border-radius: 0.25rem;
+    font-size: var(--text-base);
+    box-sizing: border-box;
+    background-color: var(--primary-bg); /* Input background should adapt */
+    color: var(--text-color); /* Input text color should adapt */
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--link-color); /* Use theme link color */
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2); /* Keep consistent shadow or adjust */
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: var(--button-bg); /* Use theme button background */
+    color: var(--button-text); /* Use theme button text */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    display: block;
+    width: 100%;
+    margin-top: var(--spacing-6);
+}
+
+.submit-button:hover {
+    background-color: var(--button-hover-bg); /* Use theme button hover */
+}
+
+
+/* ========================================================================
+    SEARCH PAGE SPECIFIC STYLES
+    ======================================================================== */
+.search-page-container {
+    padding: var(--spacing-8); /* General padding for the page */
+    max-width: 1000px; /* Adjusted max-width for content */
+    margin: 0 auto; /* Center the page content */
+    text-align: center; /* Center page title/description */
+}
+
+.search-controls-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack search elements vertically */
+    gap: var(--spacing-6); /* Space between search bar and filters */
+    margin-top: var(--spacing-8); /* Space from page title */
+    margin-bottom: var(--spacing-10); /* Space before results area */
+    background-color: var(--secondary-bg); /* A visible background for the controls */
+    padding: var(--spacing-6);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md); /* Use a standard shadow */
+    width: 100%; /* Ensure it fills container */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.search-bar-and-input {
+    display: flex;
+    gap: var(--spacing-4);
+    width: 100%;
+    max-width: 700px; /* Max width for the input + button group */
+    margin: 0 auto; /* Center the input group */
+}
+
+.search-input-page {
+    flex-grow: 1;
+    padding: var(--spacing-3) var(--spacing-4);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--text-base);
+    outline: none;
+    background-color: var(--primary-bg); /* Input background should adapt to theme */
+    color: var(--text-color); /* Input text color should adapt to theme */
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-input-page:focus {
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.search-button-page {
+    padding: var(--spacing-3) var(--spacing-5);
+    background-color: var(--button-bg); /* Use your theme's button color */
+    color: var(--button-text);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--text-base);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-button-page:hover {
+    background-color: var(--button-hover-bg); /* A darker shade for hover */
+}
+
+.search-filters-page {
+    display: flex;
+    flex-wrap: wrap; /* Allow filters to wrap on small screens */
+    gap: var(--spacing-4); /* Space between filter items */
+    justify-content: center; /* Center filters */
+    width: 100%;
+}
+
+.search-filter-item-page {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    border: 1px solid var(--input-border-color); /* Consistent border with inputs */
+    border-radius: var(--border-radius);
+    padding: var(--spacing-2) var(--spacing-3);
+    background-color: var(--primary-bg); /* Filter item background should adapt */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.filter-icon-page {
+    font-size: var(--text-lg); /* Match input text size roughly */
+    color: var(--icon-color); /* Use theme icon color */
+    transition: color 0.3s ease;
+}
+
+.filter-select-page {
+    border: none;
+    background: transparent;
+    font-size: var(--text-base);
+    color: var(--text-color); /* Text color should adapt */
+    outline: none;
+    cursor: pointer;
+    padding-right: var(--spacing-1); /* Adjust for dropdown arrow */
+    transition: color 0.3s ease;
+}
+
+.search-results-area {
+    margin-top: var(--spacing-8);
+    padding: var(--spacing-6);
+    background-color: var(--secondary-bg); /* Results area background */
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    color: var(--muted-text-color);
+    min-height: 200px; /* Give some default height */
+    /* REMOVED: display: flex; */
+    /* REMOVED: align-items: center; */
+    /* REMOVED: justify-content: center; */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* ========================================================================
+    THEME TOGGLE BUTTON STYLES (NEW)
+    ======================================================================== */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8em; /* Adjust icon size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px; /* Fixed size */
+    height: 55px; /* Fixed size */
+    box-shadow: 0 4px 10px var(--shadow-base); /* Use theme shadow */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* ========================================================================
+    CHECKOUT PAGE STYLES
+    ======================================================================== */
+
+.checkout-page {
+    background-color: var(--primary-bg); /* Using primary-bg from root variables */
+    color: var(--text-color);
+    padding: var(--spacing-6) 0;
+    min-height: calc(100vh - 80px - 160px); /* Adjust based on navbar and footer height approx. */
+}
+
+.checkout-container {
+    max-width: 1000px;
+    margin: var(--spacing-8) auto;
+    padding: var(--spacing-6);
+    background-color: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-base);
+    border: 1px solid var(--border-color);
+}
+
+.checkout-title {
+    text-align: center;
+    font-size: var(--text-3xl);
+    margin-bottom: var(--spacing-6);
+    color: var(--heading-color); /* Using heading-color from root variables */
+}
+
+/* Main grid for the form and summary sections */
+.checkout-content-grid {
+    display: grid;
+    /* Default for small screens */
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+}
+
+.checkout-form-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    padding: var(--spacing-6);
+    background-color: var(--primary-bg); /* Using primary-bg from root variables */
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-base);
+}
+
+/* Inner grid for Shipping and Payment details */
+.form-sections-two-columns {
+    display: grid;
+    /* Default: Stack vertically on small screens */
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-4);
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-2);
+}
+
+.form-group input {
+    width: 100%;
+    padding: var(--spacing-3);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--text-base);
+    box-sizing: border-box;
+    background-color: var(--secondary-bg); /* Input background within form sections */
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.form-section-title { /* For Shipping Information and Payment Details headings */
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--link-color); /* Using link-color (was --primary) */
+}
+
+/* Order Summary Box */
+.cart-summary-box {
+    background-color: var(--primary-bg); /* Using primary-bg from root variables */
+    padding: var(--spacing-6);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    height: fit-content;
+}
+
+.summary-section-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--link-color); /* Using link-color (was --primary) */
+}
+
+.cart-summary-line {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-2) 0;
+    border-bottom: 1px dashed var(--border-color);
+    font-size: var(--text-base);
+    color: var(--text-color);
+}
+
+.cart-summary-line:last-of-type {
+    border-bottom: none;
+}
+
+.cart-total-line {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--spacing-4);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--link-color); /* Using link-color (was --primary) */
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--spacing-4);
+}
+
+/* Place Order Button */
+.place-order-btn {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-4);
+    background-color: var(--button-bg); /* Using button-bg */
+    color: var(--button-text);
+    border-radius: var(--border-radius);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    text-align: center;
+    margin-top: var(--spacing-4);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.place-order-btn:hover {
+    background-color: var(--button-hover-bg); /* Using button-hover-bg */
+    transform: translateY(-1px);
+}
+
+
+/* ========================================================================
+    RESPONSIVE ADJUSTMENTS (Media Queries)
+    ======================================================================== */
+
+/* General Responsive Adjustments for 768px and up */
+@media (min-width: 768px) {
+    .hero-swiper-container {
+        height: 500px;
+    }
+
+    .footer-content {
+        flex-direction: row;
+        margin-bottom: 0;
+    }
+
+    .footer-brand {
+        margin-bottom: 0;
+    }
+
+    /* Keep product grid at 2 columns for tablets */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-detail-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .product-detail-image-wrapper {
+        width: 50%;
+        height: auto;
+    }
+
+    .product-detail-info {
+        width: 50%;
+    }
+
+    .cart-item {
+        flex-direction: row;
+    }
+
+    .services-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Search Page specific for tablets */
+    .search-controls-wrapper {
+        flex-direction: row; /* Layout controls horizontally on wider screens */
+        justify-content: center; /* Center them */
+        align-items: center;
+        gap: var(--spacing-8);
+        padding: var(--spacing-8); /* More padding for larger layout */
+    }
+
+    .search-bar-and-input {
+        flex-direction: row; /* Ensure input and button are side by side */
+        width: auto; /* Let content define width */
+        max-width: none;
+        margin: 0;
+    }
+
+    .search-button-page {
+        width: auto; /* Reset width to auto */
+    }
+
+    .search-filters-page {
+        justify-content: flex-start; /* Align filters to start in horizontal layout */
+        gap: var(--spacing-6);
+    }
+
+    /* Ensure search page product grid is set to grid for tablets */
+    .search-page-container .product-grid {
+        display: grid; /* Explicitly set display to grid */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+
+
+    /* Checkout Page specific for medium and large screens (768px and up) */
+    .checkout-content-grid {
+        grid-template-columns: 2fr 1fr; /* Form 2/3, Summary 1/3 */
+        gap: var(--spacing-6);
+    }
+
+    .form-sections-two-columns {
+        display: grid; /* Explicitly set display to grid */
+        grid-template-columns: 1fr 1fr; /* Shipping & Payment side-by-side */
+        gap: var(--spacing-6);
+    }
+
+    /* Make section titles span both columns in the inner form grid */
+    .form-sections-two-columns .form-section-title {
+        grid-column: span 2;
+    }
+}
+
+/* For larger desktops (1024px and above) */
+@media (min-width: 1024px) {
+    .hero-swiper-container {
+        height: 600px;
+    }
+
+    /* Home page: 4 product cards in a row */
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Search page: 3 product cards in a row */
+    .search-page-container .product-grid {
+        display: grid; /* Explicitly set display to grid */
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Ensure search controls remain responsive on larger screens */
+    .search-controls-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        gap: var(--spacing-8);
+    }
+    .search-bar-and-input {
+        max-width: 800px; /* Wider search input on large screens */
+    }
+}
+
+/* Also ensure default for smaller screens is `display: grid;` for the search page product grid */
+@media (max-width: 767px) { /* Small screens */
+    .search-page-container .product-grid {
+        display: grid; /* Explicitly set display to grid */
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+    /* Optional: Adjust for very small screens if button gets in the way */
+    .theme-toggle-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5em;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    /* Adjust search page for very small screens */
+    .search-bar-and-input {
+        flex-direction: column; /* Stack input and button vertically */
+    }
+    .search-button-page {
+        width: 100%; /* Make button full width */
+    }
+    .search-filters-page {
+        flex-direction: column; /* Stack filters vertically */
+        align-items: stretch; /* Stretch items to fill width */
+    }
+}

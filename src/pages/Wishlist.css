@@ -1,0 +1,101 @@
+/* ========================================================================
+    WISHLIST PAGE STYLES
+    ======================================================================== */
+
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-6); /* Space between wishlist items */
+}
+
+.wishlist-item {
+    /* Inherits product-card styles for visual consistency */
+    display: flex;
+    flex-direction: column;
+    /* Specific overrides if needed */
+}
+
+.wishlist-item-image-wrapper {
+    height: 14rem; /* Adjust image height for wishlist items if different from product card */
+    overflow: hidden;
+    margin-bottom: var(--spacing-4);
+}
+
+.wishlist-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.wishlist-item-details {
+    padding: var(--spacing-4);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wishlist-item-actions {
+    display: flex;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-4);
+}
+
+.clear-wishlist-btn {
+    background-color: var(--red-600); /* Use a red color for clear action */
+    color: var(--white);
+    border: 1px solid var(--red-600);
+    padding: var(--spacing-3) var(--spacing-6);
+    font-size: var(--text-base);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.clear-wishlist-btn:hover {
+    background-color: var(--red-700);
+    border-color: var(--red-700);
+}
+
+/* For the empty wishlist message paragraph */
+.container.text-center p.text-lg {
+    margin-bottom: var(--spacing-8); /* Or var(--spacing-10) for more space */
+}
+
+/* ========================================================================
+    WISHLIST PAGE STYLES (Existing styles remain)
+    ======================================================================== */
+
+/* ... (your existing Wishlist.css styles) ... */
+
+/* New styles for centering the empty wishlist message */
+.empty-wishlist-content {
+    display: flex;            /* Enable flexbox */
+    flex-direction: column;   /* Stack items vertically */
+    align-items: center;      /* Center items horizontally within the flex container */
+    text-align: center;       /* Ensure any remaining inline text is also centered */
+    width: 100%;             /* Ensure it takes full available width to center itself if needed */
+    margin-top: 100px;
+}
+
+/* If you previously added a specific margin-bottom to p.text-lg, it can stay,
+   or you can rely on the mb-8 utility class in JSX. */
+/* Example:
+.container.text-center p.text-lg {
+    margin-bottom: var(--spacing-8);
+}
+*/
+
+/* Responsive adjustments for wishlist grid */
+@media (max-width: 768px) {
+    .wishlist-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .wishlist-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+}

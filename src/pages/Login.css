@@ -1,0 +1,135 @@
+/* Universal styles - good as is */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Body styles - ADJUSTED for centering and potential background issues */
+.body {
+    /* These lines are causing the issue when Login.css is imported into a component. */
+    /* In a React app, the <body> tag is usually managed by the main index.html and global CSS. */
+    /* When imported into Login.jsx, these styles might conflict or not apply as expected. */
+    /* We will achieve centering and background via the main app structure or the wrapper itself. */
+
+    /* REMOVE or COMMENT OUT these lines if this CSS is only for the Login component */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* min-height: 100vh; */
+    /* background: url('../src/assests/img.jpg') no-repeat; */
+    /* background-size: cover; */
+    /* background-position: center; */
+}
+
+/* Wrapper for the login form - ADJUSTED for centering and background */
+.wrapper {
+    width: 420px;
+    background: #ffffff; /* CHANGE: Make background solid white for visibility */
+    border: 2px solid rgba(0, 0, 0, .4); /* CHANGE: Darker border for visibility */
+    backdrop-filter: blur(5px); /* Keep some blur if desired, but less intense */
+    color: #333333; /* CHANGE: Darker text for readability */
+    border-radius: 12px;
+    padding: 30px 40px;
+    
+    /* ADD these to center the wrapper itself if body styles are removed */
+    margin: 50px auto; /* Centers horizontally, adds space from top */
+    /* Or if you want it vertically centered on its own page, you'd use: */
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center; /* Good as is, keeps heading centered */
+    color: #333333; /* CHANGE: Ensure heading text is dark */
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0; /* CHANGE: Light grey background for input */
+    border: none; /* Remove default browser border */
+    outline: none;
+    border: 2px solid #000000; /* CHANGE: Solid BLACK border */
+    border-radius: 40px;
+    font-size: 16px;
+    color: #333333; /* CHANGE: Dark text inside input */
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #666666; /* CHANGE: Darker placeholder text */
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%; /* CHANGE: Center icon vertically */
+    transform: translateY(-50%); /* CHANGE: Adjust for vertical centering */
+    font-size: 20px;
+    color: #333333; /* CHANGE: Darker icon color */
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+    color: #333333; /* CHANGE: Ensure text is dark */
+}
+
+.remember-forgot label input {
+    accent-color: #000000;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #007bff; /* CHANGE: A standard link blue for visibility */
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #007bff; /* CHANGE: A clear blue for the button */
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2); /* Slightly stronger shadow */
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff; /* CHANGE: White text on blue button */
+    font-weight: 600;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+    color: #333333; /* CHANGE: Ensure text is dark */
+}
+
+.register-link p a {
+    color: #007bff; /* CHANGE: A standard link blue for visibility */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
